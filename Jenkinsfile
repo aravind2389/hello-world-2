@@ -1,3 +1,4 @@
+/*
 pipeline {
     agent any
     environment {
@@ -20,6 +21,20 @@ pipeline {
                  sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@13.229.183.126:/opt/apache-tomcat-8.5.55/webapps"
                  
                 }
+            }
+        }
+    }
+}
+*/
+
+pipeline {
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
             }
         }
     }
